@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LochSentinel Ping</title>
+</head>
+<body>
+		<button id="pingButton"> Ping </button>
+		<div id="pingResponse"> Ping: </div>
+
+		<script type="module"> 
+
+			import { getPing } from './ping.js';
+			const buttonDocument = document.getElementById('pingButton')
+			const pingDocument = document.getElementById('pingResponse')
+
+			buttonDocument.addEventListener('click', async() => {
+				try {
+					const result = await getPing();	
+					pingDocument.textContent = result.message;
+				} catch (error) {
+					pingDocument.textContent = "Failed";
+					console.error(error);
+				}
+			})
+		</script>
+</body>
+</html>
+
